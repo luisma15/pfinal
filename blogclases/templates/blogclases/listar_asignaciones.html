@@ -1,0 +1,17 @@
+<html>
+<div>
+<h1><a href="/">Django Girls Blog</a></h1>
+</div>
+
+{% for post in posts %}
+<div>
+
+   <h1><a href="">Aula: {{ post.as_aula}}</a></h1>
+   <p>Catedratico: {{ post.as_catedratico}}<p>
+     <p>Curso: {{  post.as_curso }}<p>
+       <p>Alumno: {{ post.as_alumno}} <p>
+         <p>asignado: {{ post.as_fecha}}</p>
+   <p>{{ post.text|linebreaksbr }}</p>
+</div>
+{% endfor %}
+    </html>
