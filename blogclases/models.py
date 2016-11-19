@@ -35,6 +35,7 @@ class Asignacion(models.Model):
     as_catedratico = models.ForeignKey(Catedratico,on_delete=models.CASCADE)
     as_alumno = models.ForeignKey(Alumno,on_delete=models.CASCADE)
     as_curso = models.ForeignKey(Curso,on_delete=models.CASCADE)
+    
 
 class AsignacionInLine(admin.TabularInline):
     model=Asignacion
