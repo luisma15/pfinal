@@ -1,0 +1,18 @@
+{% extends 'blogclases/base.html' %}
+
+{% block content %}
+<strong>Alumno</strong>
+<br>
+<br>
+<br>
+{% for post in posts %}
+
+<a class = "btn btn-default" href="{% url 'EditarAlumno' pk=post.pk %} " ><span class = "glyphicon glyphicon-pencil"></span></a>
+
+            <p>Nombre: {{  post.al_nombre }}<p>
+            <p>Apellido: {{  post.al_apellido }}<p>
+            <p>Edad: {{ post.al_edad}} <p>
+            <p>{{ post.text|linebreaksbr }}</p>
+
+            {% endfor %}
+{% endblock content %}

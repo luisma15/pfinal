@@ -1,0 +1,17 @@
+{% extends 'blogclases/base.html' %}
+
+{% block content %}
+<html>
+<strong>Cursos</strong>
+<br>
+<br>
+<br>
+{% for post in posts %}
+
+<a class = "btn btn-default" href="{% url 'EditarCurso' pk=post.pk %} " ><span class = "glyphicon glyphicon-pencil"></span></a>
+            <p>Nombre: {{ post.cur_nombre}}<p>
+            <p>Creditos: {{  post.cur_creditos}}<p>
+
+            {% endfor %}
+{% endblock content %}
+</html>
