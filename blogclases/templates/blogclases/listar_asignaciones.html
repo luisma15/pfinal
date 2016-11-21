@@ -3,15 +3,14 @@
 {% block content %}
 <strong>Asignaciones</strong>
 {% for post in posts %}
-        <div class="post">
-            <div class="date">
+<a class = "btn btn-default" href="{% url 'EditarAsignacion' pk=post.pk %} " ><span class = "glyphicon glyphicon-pencil"></span></a>
 
-            </div>
+
             <p>Catedratico: {{ post.as_catedratico}}<p>
             <p>Curso: {{  post.as_curso }}<p>
             <p>Alumno: {{ post.as_alumno}} <p>
             <p>asignado: {{ post.as_fecha}}</p>
             <p>{{ post.text|linebreaksbr }}</p>
-        </div>
+
     {% endfor %}
 {% endblock content %}

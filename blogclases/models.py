@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.contrib import admin
+from django.utils import timezone
 # Create your models here.
 
 class Catedratico(models.Model):
@@ -30,12 +31,12 @@ class Alumno(models.Model):
         return self.al_nombre
 
 class Asignacion(models.Model):
-    as_fecha = models.DateField()
+    as_fecha = models.DateField(default = timezone.now)
     as_aula = models.CharField(max_length = 5)
     as_catedratico = models.ForeignKey(Catedratico,on_delete=models.CASCADE)
     as_alumno = models.ForeignKey(Alumno,on_delete=models.CASCADE)
     as_curso = models.ForeignKey(Curso,on_delete=models.CASCADE)
-    
+
 
 class AsignacionInLine(admin.TabularInline):
     model=Asignacion

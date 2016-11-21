@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import Alumno, Catedratico, Curso, Asignacion
-from .forms import ingresarCatedratico, ingresarCurso, ingresarAlumno
+from .forms import ingresarCatedratico, ingresarCurso, ingresarAlumno, ingresarAsignacion
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
@@ -45,6 +45,18 @@ def IngresarAlumno(request):
     else:
         form = ingresarAlumno()
     return render(request, 'blogclases/ingresar_alumno.html', {'form': form})
+
+def IngresarAsignacion(request):
+    if request.method == "POST":
+        form = ingresarAsignacion(request.POST)
+        if form.is_valid():
+            post = form.save(commit = False)
+            post.save()
+            return render(request, 'blogclases/listar_asignaciones.html', {'form': form})
+
+    else:
+        form = ingresarAsignacion()
+    return render(request, 'blogclases/ingresarAsignacion.html', {'form': form})
 
 def ListarCatedratico(request):
     posts = Catedratico.objects.order_by('cat_nombre')
@@ -99,3 +111,17 @@ def EditarAlumno(request, pk):
     else:
         form = ingresarAlumno(instance = post)
     return render(request, 'blogclases/editar_alumno.html',{'form': form})
+
+def EditarAsignacion(request, pk):
+    posts = Asignacion.objects.order_by('as_fecha')
+    post = get_object_or_404(Asignacion, pk = pk)
+    if request.method == "POST":
+        form = ingresarAsignacion(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit = False)
+            post.author = request.user
+            post.save()
+            return redirect ('blogclases.views.listar_asignaciones')
+    else:
+        form = ingresarAsignacion(instance = post)
+    return render(request, 'blogclases/editar_asignacion.html',{'form': form})
