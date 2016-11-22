@@ -8,6 +8,8 @@
 {% for post in posts %}
 
 <a class = "btn btn-default" href="{% url 'EditarAlumno' pk=post.pk %} " ><span class = "glyphicon glyphicon-pencil"></span></a>
+<a class = "btn btn-default" href="{% url 'EliminarAlumno' pk=post.pk %} " ><span class = "glyphicon glyphicon-trash"></span></a>
+
 
             <p>Nombre: {{  post.al_nombre }}<p>
             <p>Apellido: {{  post.al_apellido }}<p>

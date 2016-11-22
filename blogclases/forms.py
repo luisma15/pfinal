@@ -4,7 +4,7 @@ from .models import Catedratico, Curso, Alumno, Asignacion
 class ingresarCatedratico(forms.ModelForm):
     class  Meta:
         model = Catedratico
-        fields = ('cat_nombre', 'cat_apellido', 'cat_edad', 'cat_genero', 'cat_telefono')
+        fields = ('cat_nombre', 'cat_apellido', 'cat_edad', 'cat_genero', 'cat_telefono', 'cat_imagen')
 
 class ingresarCurso(forms.ModelForm):
     class  Meta:

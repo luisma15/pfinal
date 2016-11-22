@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from . import views
 
+
 urlpatterns = [
         url(r'^$', views.listar_asignaciones),
         url(r'^ingresarCatedratico/$', views.IngresarCatedratico, name = 'ingresar'),
@@ -16,5 +17,11 @@ urlpatterns = [
         url(r'^EditarCurso/(?P<pk>[0-9]+)/editar/$', views.EditarCurso, name = 'EditarCurso'),
         url(r'^EditarAlumno/(?P<pk>[0-9]+)/editar/$', views.EditarAlumno, name = 'EditarAlumno'),
         url(r'^EditarAsignacion/(?P<pk>[0-9]+)/editar/$', views.EditarAsignacion, name = 'EditarAsignacion'),
+
+        url(r'^eliminarCurso/(?P<pk>[0-9]+)/editar/$', views.EliminarCurso, name = 'EliminarCurso'),
+        url(r'^eliminarAlumno/(?P<pk>[0-9]+)/editar/$', views.EliminarAlumno, name = 'EliminarAlumno'),
+
+
+
         #(r'^post/(?P<pk>[0-9]+)/$', views.asignaciones_detalle)
     ]

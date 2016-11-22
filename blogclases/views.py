@@ -4,19 +4,36 @@ from .models import Alumno, Catedratico, Curso, Asignacion
 from .forms import ingresarCatedratico, ingresarCurso, ingresarAlumno, ingresarAsignacion
 from django.shortcuts import render, get_object_or_404
 
+def EliminarCurso(reques, pk = None):
+    instance = get_object_or_404(Curso, pk=pk)
+    instance.delete()
+    return redirect ('blogclases.views.ListarCurso')
+
+def EliminarAlumno(reques, pk = None):
+    instance = get_object_or_404(Alumno, pk=pk)
+    instance.delete()
+    return redirect ('blogclases.views.ListarAlumno')
+
+def EliminarCatedratico(reques, pk = None):
+    instance = get_object_or_404(Catedratico, pk=pk)
+    instance.delete()
+    return redirect ('blogclases.views.ListarCatedratico')
+
 # Create your views here.
 def listar_asignaciones(request):
     #posts = Asignacion.objects.filter(published_date__lte=timezone.now()).order_by('fecha')
     posts = Asignacion.objects.order_by('as_fecha')
     return render(request, 'blogclases/listar_asignaciones.html', {'posts': posts})
 
+
+
 def IngresarCatedratico(request):
     if request.method == "POST":
-        form = ingresarCatedratico(request.POST)
+        form = ingresarCatedratico(request.POST or None, request.FILES or None)
         if form.is_valid():
             post = form.save(commit = False)
             post.save()
-            return render(request, 'blogclases/listar_catedratico.html', {'form': form})
+            return redirect ('blogclases.views.ListarCatedratico')
 
     else:
         form = ingresarCatedratico()
@@ -28,7 +45,7 @@ def IngresarCurso(request):
         if form.is_valid():
             post = form.save(commit = False)
             post.save()
-            return render(request, 'blogclases/listar_curso.html', {'form': form})
+            return redirect ('blogclases.views.ListarCurso')
 
     else:
         form = ingresarCurso()
@@ -40,7 +57,7 @@ def IngresarAlumno(request):
         if form.is_valid():
             post = form.save(commit = False)
             post.save()
-            return render(request, 'blogclases/listar_alumno.html', {'form': form})
+            return redirect ('blogclases.views.ListarAlumno')
 
     else:
         form = ingresarAlumno()
@@ -52,7 +69,7 @@ def IngresarAsignacion(request):
         if form.is_valid():
             post = form.save(commit = False)
             post.save()
-            return render(request, 'blogclases/listar_asignaciones.html', {'form': form})
+            return redirect ('blogclases.views.listar_asignaciones')
 
     else:
         form = ingresarAsignacion()
