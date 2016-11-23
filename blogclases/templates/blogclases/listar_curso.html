@@ -4,6 +4,7 @@
 <html>
 <strong>Cursos</strong>
 <br>
+<a class = "btn btn-default" href="{% url 'ingresarCurso' %} " ><span class = "glyphicon glyphicon-pencil"></span></a>
 <br>
 <br>
 {% for post in posts %}
@@ -13,7 +14,7 @@
 
             <p>Nombre: {{ post.cur_nombre}}<p>
             <p>Creditos: {{  post.cur_creditos}}<p>
-
+            <br>
             {% endfor %}
 {% endblock content %}
 </html>

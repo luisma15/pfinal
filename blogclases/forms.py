@@ -3,6 +3,7 @@ from .models import Catedratico, Curso, Alumno, Asignacion
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
+
 class ingresarCatedratico(forms.ModelForm):
     class  Meta:
         model = Catedratico

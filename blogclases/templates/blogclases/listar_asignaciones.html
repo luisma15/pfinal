@@ -2,6 +2,11 @@
 
 {% block content %}
 <strong>Asignaciones</strong>
+<br>
+<a class = "btn btn-default" href="{% url 'ingresarAsignacion' %} " ><span class = "glyphicon glyphicon-pencil"></span></a>
+<br>
+<br>
+<br>
 {% for post in posts %}
 <a class = "btn btn-default" href="{% url 'EditarAsignacion' pk=post.pk %} " ><span class = "glyphicon glyphicon-pencil"></span></a>
 

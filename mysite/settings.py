@@ -106,4 +106,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__),'media/'))
 MEDIA_URL = '/media/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'listarAsignaciones'

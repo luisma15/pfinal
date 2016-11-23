@@ -1,26 +1,44 @@
 {% load staticfiles %}
-    <html>
-        <head>
-            <title>Clases para todos</title>
-            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-            <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<title>Clases para todos </title>
+</head>
 
-            <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        </head>
-
-        <div class="page-header">
-                <h1><a href="/">Clases para todos</a></h1>
-            </div>
-
-
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                {% block content %}
-                {% endblock %}
-                </div>
-            </div>
+<body>
+<div id="container">
+		<div id="mainpic">
+        	<h1>Clases<span class="lightblue"> para todos</span></h1>
+				<br>
+				<br>
+				<br>
+            <h2><p>Aprovecha tu tiempo libre<p></h2>
         </div>
 
-    </html>
+        <div id="menu">
+        	<ul>
+            	<li class="menuitem"><a href="{% url 'listarAsignaciones' %}">Home</a></li>
+                <li class="menuitem"><a href="{% url 'listarAlumno' %}">Alumnos</a></li>
+                <li class="menuitem"><a href="{% url 'listarCatedratico' %}">Catedratico</a></li>
+                <li class="menuitem"><a href="{% url 'listarCurso' %}">Cursos</a></li>
+                <li class="menuitem"><a href="{% url 'nuevo_user' %}"></a>Crear Usuario</li>
+              <li class="menuitem"><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+            </ul>
+        </div>
+
+		<div id="content">
+
+       	  <h3>
+						{% block content %}
+									 {% endblock %}
+					</h3>
+
+            <div id="footer"><h3><a href="http://www.bryantsmith.com">florida web design</a></h3></div>
+      </div>
+   </div>
+<div style="text-align: center; font-size: 0.75em;">Diseño descargado desde <a href="http://www.misplantillas.com/">plantillas web gratis y profesionales</a>.</div></body>
+</html>

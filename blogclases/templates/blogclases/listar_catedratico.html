@@ -3,11 +3,12 @@
 {% block content %}
 <strong>Catedraticos</strong>
 <br>
+<a class = "btn btn-default" href="{% url 'ingresarCatedratico' %} " ><span class = "glyphicon glyphicon-pencil"></span></a>
 <br>
 <br>
 {% for post in posts %}
 <a class = "btn btn-default" href="{% url 'EditarCatedratico' pk=post.pk %} " ><span class = "glyphicon glyphicon-pencil"></span></a>
-
+<a class = "btn btn-default" href="{% url 'EliminarCatedratico' pk=post.pk %} " ><span class = "glyphicon glyphicon-trash"></span></a>
             <p>Nombre: {{ post.cat_nombre}}<p>
             <p>Apellido: {{  post.cat_apellido }}<p>
             <p>Genero: {{ post.cat_genero}} <p>
@@ -15,6 +16,6 @@
             <p>Telefono: {{ post.cat_telefono}}</p>
             <img src="/media/{{ post.cat_imagen }}" width="150px" heigth="150px"/>
             <p>{{ post.text|linebreaksbr }}</p>
-
+            <br>
             {% endfor %}
 {% endblock content %}
