@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from . import views
+from django.contrib.auth.views import login,logout
 
 
 urlpatterns = [
@@ -21,7 +22,10 @@ urlpatterns = [
         url(r'^eliminarCurso/(?P<pk>[0-9]+)/editar/$', views.EliminarCurso, name = 'EliminarCurso'),
         url(r'^eliminarAlumno/(?P<pk>[0-9]+)/editar/$', views.EliminarAlumno, name = 'EliminarAlumno'),
 
+        url(r'^accounts/login/$',  login),
+        url(r'^accounts/logout/$', logout),
 
+        url(r'^usuario/nuevo/$', views.RegistroUsuario.as_view(), name='nuevo_user'),
 
         #(r'^post/(?P<pk>[0-9]+)/$', views.asignaciones_detalle)
     ]

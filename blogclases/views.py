@@ -1,8 +1,18 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import Alumno, Catedratico, Curso, Asignacion
-from .forms import ingresarCatedratico, ingresarCurso, ingresarAlumno, ingresarAsignacion
+from .forms import ingresarCatedratico, ingresarCurso, ingresarAlumno, ingresarAsignacion, RegistroForm
 from django.shortcuts import render, get_object_or_404
+from django.contrib import auth
+
+from django.shortcuts import redirect
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.views.generic import CreateView
+from django.core.urlresolvers import reverse_lazy
+
 
 def EliminarCurso(reques, pk = None):
     instance = get_object_or_404(Curso, pk=pk)
@@ -142,3 +152,27 @@ def EditarAsignacion(request, pk):
     else:
         form = ingresarAsignacion(instance = post)
     return render(request, 'blogclases/editar_asignacion.html',{'form': form})
+
+def Login(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = auth.authenticate(username=username, password=password)
+    if user is not None and user.is_active:
+        # Correct password, and the user is marked "active"
+        auth.login(request, user)
+        # Redirect to a success page.
+        return HttpResponseRedirect("/account/loggedin/")
+    else:
+        # Show an error page
+        return redirect('blogclases.views.Login')
+
+def logout(request):
+    auth.logout(request)
+    # Redirect to a success page.
+    return HttpResponseRedirect("/account/loggedout/")
+
+class RegistroUsuario(CreateView):
+    model = User
+    template_name = "blogclases/nuevousuario.html"
+    form_class = RegistroForm
+    success_url = reverse_lazy('blogclases.views.listar_asignaciones')
